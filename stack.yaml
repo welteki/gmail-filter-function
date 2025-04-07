@@ -1,0 +1,14 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  gmail-filter:
+    lang: python3-http
+    handler: ./gmail-filter
+    image: ttl.sh/welteki/gmail-filter:0.0.4
+    secrets:
+      - openai-api-key
+      - token.json
+    annotations:
+      topic: gmail-notifications
