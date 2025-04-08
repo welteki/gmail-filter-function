@@ -5,8 +5,8 @@ provider:
 functions:
   gmail-filter:
     lang: python3-http
-    handler: ./gmail-filter
-    image: ttl.sh/welteki/gmail-filter:0.0.4
+    handler: ./gmail-spam-detection
+    image: ttl.sh/welteki/gmail-spam-detection:0.0.4
     secrets:
       - openai-api-key
       - token.json
