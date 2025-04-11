@@ -30,7 +30,7 @@ The gmail spam detection function receives notifications for a Gmail inbox via G
 3.  Authorize with the Gmail API
     - If this has not been done already, [configure an OAuth consent screen](https://developers.google.com/workspace/gmail/api/quickstart/python#configure_the_oauth_consent_screen) for your Google Cloud Project.
     - [Get authorization credentials for a desktop application](https://developers.google.com/workspace/gmail/api/quickstart/python#authorize_credentials_for_a_desktop_application) and save them as `.secrets/credentials.json`.
-    - Implement or use an existing OAuth consent flow and get a valid access token for the Gmail user. This repo includes a script `auth.py` to executes an OAuth flow that saves the access token at `.secrets/token.json`.
+    - Implement or use an existing OAuth consent flow and get a valid access token for the Gmail user. This repo includes a script `auth.py` to executes an OAuth flow that saves the access token at `.secrets/gmail-token`.
 4.  Get an API key for the OpenAI API.
     - Login to your OpenAI account.
     - Create or select a project
@@ -43,7 +43,7 @@ The gmail spam detection function receives notifications for a Gmail inbox via G
         ```yaml
         projectID: "your-project-id"
         subscriptions:
-          - gmail-notifications
+          - gmail-notifications-sub
         ```
 
 6.  Deploy the gmail-spam-detection function
@@ -52,8 +52,8 @@ The gmail spam detection function receives notifications for a Gmail inbox via G
       ```bash
       # Gmail access token
       faas-cli secret create \
-          token.json \
-          --from-file .secrets/token.json
+          gmail-token \
+          --from-file .secrets/gmail-token
 
       # OpenAI API key
       faas-cli secret create \

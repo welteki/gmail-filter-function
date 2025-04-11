@@ -3,12 +3,17 @@ provider:
   name: openfaas
   gateway: http://127.0.0.1:8080
 functions:
-  gmail-filter:
+  gmail-spam-detection:
     lang: python3-http
     handler: ./gmail-spam-detection
-    image: ttl.sh/welteki/gmail-spam-detection:0.0.4
+    image: ${SERVER:-ttl.sh}/${OWNER:-openfaas-demo}/gmail-spam-detection:0.0.1
+    environment:
+      cold_outreach_label: "Cold Outreach"
+      project_id: ${PROJECT_ID:-openfaas-381517}
+      notification_topic: "gmail-notifications"
     secrets:
+      - gmail-token
       - openai-api-key
-      - token.json
     annotations:
-      topic: gmail-notifications
+      topic: cron-function,gmail-notifications-sub
+      schedule: "0 2 * * *"

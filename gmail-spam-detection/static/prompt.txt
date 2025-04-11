@@ -1,0 +1,21 @@
+Analyze the following email and determine if it is a cold outreach email.
+
+Consider the following indicators:
+- Keywords like "proposal," "partnership," "demo," "schedule," "solution," or "reach out."
+- Generic greetings (e.g., "Dear [Name]," "Hi there") with no personal context.
+- Mentions of companies, tools, or services being offered.
+- Links to scheduling tools (e.g., Calendly) or company websites.
+- Formal or overly enthusiastic tone typical of sales pitches.
+
+Return your answer in the following JSON format:
+{
+  "is_cold_outreach": [true | false],
+  "confidence": [float between 0 and 1],
+  "reasoning": "Short explanation",
+  "from": "Sender address of the email",
+  "subject": "The email subject"
+}
+
+If the email is incomplete or ambiguous, base your judgment on available content and note any limitations in the reasoning.
+
+Email:
